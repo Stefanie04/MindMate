@@ -1,0 +1,128 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    font-family: "Livvic", sans-serif !important;
+    font-weight: 300 !important;
+    font-size: 1.2rem;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .header {
+    background-color: #fa1e5a !important;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .header h4 {
+    margin: 0;
+    color: white;
+  }
+  
+  .btn-primary {
+    background-color: #fa1e5a !important;
+  }
+  
+  .icon-img {
+    /* to black */
+    filter: invert(1) saturate(5) hue-rotate(175deg);
+  }
+  
+  .chatbox {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chatlogs {
+    padding: 10px;
+    height: 500px;
+    overflow-y: scroll;
+  }
+  
+  .chat {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .chat.bot {
+    flex-flow: row nowrap;
+  }
+  
+  .chat.user {
+    flex-flow: row-reverse;
+  }
+  
+  .chat .chat-photo {
+    width: 60px;
+    height: 60px;
+    background-color: #fa1e5a !important;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: auto 10px;
+    text-align: center;
+  }
+  
+  .chat .chat-photo img {
+    width: 55%;
+    margin-top: 8px;
+  }
+  
+  .chat .user-photo {
+    width: 60px;
+    height: 60px;
+    background-color: #fa1e5a !important;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: auto 10px;
+    text-align: center;
+  }
+  
+  .chat .user-photo img {
+    width: 55%;
+    margin-top: 8px;
+  }
+  
+  .chat .chat-message {
+    width: calc(100% - 60px);
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #ececec;
+  }
+  
+  .chat .bot .chat-message {
+    background-color: #fa1e5a !important;
+    color: white;
+  }
+  
+  .chat-form {
+    padding: 10px;
+  }
+  
+  .chat-form form {
+    display: flex;
+    flex-flow: row wrap;
+  }
+  
+  .chat-form .input-group {
+    width: 100%;
+  }
+  
+  .chat-form input[type="text"] {
+    flex: 1 1 auto;
+    padding: 10px;
+    /* border: 1px solid #fa1e5a; */
+    border-radius: 5px;
+  }
+  
+  .chat-form button {
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
