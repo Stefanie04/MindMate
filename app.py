@@ -9,6 +9,7 @@ import json
 import random
 import pandas as pd
 import os
+import pickle
 
 tags = []
 patterns = []
@@ -24,10 +25,23 @@ with open(json_file_path) as json_data:
             patterns.append(lines)
             tags.append(intents['tag'])
 
-#pre_df = None
-#df_file_path = os.path.join(my_dir, 'pre_df.pkl')
-#with open(df_file_path, 'rb') as f:
-#    pre_df = pd.read_pickle(f)
+# loading
+my_dir = os.path.dirname(__file__)
+tokenizer = None
+tokenizer_path = os.path.join(my_dir, 'tokenizer.pkl')
+with open(tokenizer_path, 'rb') as handle:
+    tokenizer = pickle.load(handle)
+
+encoder_path = os.path.join(my_dir, 'encoder.pkl')
+pkl_file = open(encoder_path, 'rb')
+encoder = pickle.load(pkl_file) 
+pkl_file.close()
+
+model_path = os.path.join(my_dir, 'mindmate_model.h5')
+model = keras.models.load_model(model_path)
+
+input_size=21
+output_size=166
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mindMateS3cr3t!'
@@ -45,13 +59,6 @@ def predict():
     request_data = request.get_json()
     user_input = request_data['data']
     toReturn = {"output": "Thank you!"}
-    model_path = os.path.join(my_dir, 'mindmate_model.h5')
-    model = keras.models.load_model(model_path)
-    # Create a LabelEncoder object
-    encoder = LabelEncoder()
-    y_train = encoder.fit_transform(tags)
-    output_size = encoder.classes_.shape[0]
-    tokenizer = Tokenizer(num_words=2000)
     user_input = user_input.lower()
     user_input = re.sub(r'[^\w\s]', '', user_input)
     conversation.append(user_input)
