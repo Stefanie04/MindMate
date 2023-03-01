@@ -8,9 +8,12 @@ import re
 import json
 import random
 import pandas as pd
+import os
 
 responses = {}
-with open("Dataset/intents-rev2.json") as json_data:
+my_dir = os.path.dirname(__file__)
+json_file_path = os.path.join(my_dir, 'Dataset/intents-rev2.json')
+with open(json_file_path) as json_data:
     json_dict = json.load(json_data)
     for intents in json_dict['intents']:
         responses[intents['tag']]=intents['responses']
