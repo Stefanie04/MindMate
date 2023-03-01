@@ -10,15 +10,24 @@ import random
 import pandas as pd
 import os
 
+tags = []
+patterns = []
 responses = {}
+
 my_dir = os.path.dirname(__file__)
 json_file_path = os.path.join(my_dir, 'Dataset/intents-rev2.json')
 with open(json_file_path) as json_data:
     json_dict = json.load(json_data)
     for intents in json_dict['intents']:
         responses[intents['tag']]=intents['responses']
+        for lines in intents['patterns']:
+            patterns.append(lines)
+            tags.append(intents['tag'])
 
-pre_df = pd.read_pickle("pre_df.pkl")
+#pre_df = None
+#df_file_path = os.path.join(my_dir, 'pre_df.pkl')
+#with open(df_file_path, 'rb') as f:
+#    pre_df = pd.read_pickle(f)
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mindMateS3cr3t!'
@@ -36,10 +45,11 @@ def predict():
     request_data = request.get_json()
     user_input = request_data['data']
     toReturn = {"output": "Thank you!"}
-    model = keras.models.load_model('mindmate_model.h5')
+    model_path = os.path.join(my_dir, 'mindmate_model.h5')
+    model = keras.models.load_model(model_path)
     # Create a LabelEncoder object
     encoder = LabelEncoder()
-    y_train = encoder.fit_transform(pre_df['tags'])
+    y_train = encoder.fit_transform(tags)
     output_size = encoder.classes_.shape[0]
     tokenizer = Tokenizer(num_words=2000)
     user_input = user_input.lower()
