@@ -4,7 +4,7 @@ body {
   background-color: white;
   font-family: "Livvic", sans-serif !important;
   font-weight: 300 !important;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .container {
@@ -42,7 +42,7 @@ body {
 
 .chatlogs {
   padding: 10px;
-  height: 650px;
+  height: 625px;
   overflow-y: scroll;
 }
 
